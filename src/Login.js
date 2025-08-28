@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "./api";   // ✅ بدلاً من axios
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import api from "./api";
+import { showSuccess, showError } from "./toastHelper"; // ✅ استخدام الدوال الموحدة
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -9,12 +12,15 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const res = await api.post("/api/login", { email, password }); // ✅ استخدام api.js
-      alert(res.data.message);
-      navigate("/dashboard");
+      const res = await api.post("/api/login", { email, password });
+      showSuccess(res.data.message || "✅ تم تسجيل الدخول بنجاح");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
     } catch (err) {
       console.error(err);
-      alert("❌ فشل تسجيل الدخول");
+      showError("❌ فشل تسجيل الدخول");
     }
   };
 
@@ -38,6 +44,8 @@ function Login() {
       <button onClick={handleLogin} className="btn btn-primary w-100">
         دخول
       </button>
+
+      <ToastContainer />
     </div>
   );
 }

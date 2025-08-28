@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import api from "./api";   // ✅ استدعاء instance الجاهز
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import api from "./api";
+import { showSuccess, showError } from "./toastHelper"; // ✅
 
 function AddUser() {
   const [name, setName] = useState("");
@@ -8,14 +11,14 @@ function AddUser() {
 
   const handleAddUser = async () => {
     try {
-      const res = await api.post("/api/users", { name, email, password }); // ✅ رابط نسبي فقط
-      alert(res.data.message || "✅ تم إضافة المستخدم بنجاح");
+      const res = await api.post("/api/users", { name, email, password });
+      showSuccess(res.data.message || "✅ تم إضافة المستخدم بنجاح");
       setName("");
       setEmail("");
       setPassword("");
     } catch (err) {
       console.error(err);
-      alert("❌ فشل في إضافة المستخدم");
+      showError("❌ فشل في إضافة المستخدم");
     }
   };
 
@@ -46,6 +49,8 @@ function AddUser() {
       <button onClick={handleAddUser} className="btn btn-success w-100">
         إضافة
       </button>
+
+      <ToastContainer />
     </div>
   );
 }
