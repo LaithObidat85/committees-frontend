@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import AddUser from "./AddUser";
-import ProtectedRoute from "./ProtectedRoute";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import AddUser from './AddUser';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
