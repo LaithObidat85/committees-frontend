@@ -1,29 +1,37 @@
-import React, { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "./api";
-import { showSuccess, showError } from "./toastHelper"; // ✅
+import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import api from './api';
+import { showSuccess, showError } from './toastHelper'; // ✅
 
 function AddUser() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleAddUser = async () => {
     try {
-      const res = await api.post("/api/users", { name, email, password });
-      showSuccess(res.data.message || "✅ تم إضافة المستخدم بنجاح");
-      setName("");
-      setEmail("");
-      setPassword("");
+      const res = await api.post('/api/users', { name, email, password });
+      showSuccess(res.data.message || '✅ تم إضافة المستخدم الان بنجاح');
+      setName('');
+      setEmail('');
+      setPassword('');
     } catch (err) {
       console.error(err);
-      showError("❌ فشل في إضافة المستخدم");
+      showError('❌ فشل في إضافة المستخدم');
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px" }}>
+    <div
+      style={{
+        maxWidth: '400px',
+        margin: '50px auto',
+        padding: '20px',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+      }}
+    >
       <h2>➕ إضافة مستخدم جديد</h2>
       <input
         type="text"
