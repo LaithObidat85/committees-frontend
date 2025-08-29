@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import api from "./api";   // ✅ استدعاء instance الجاهز
+import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import api from './api'; // ✅ استدعاء instance الجاهز
 
 function ProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await api.get("/api/me");   // ✅ رابط نسبي فقط
+        await api.get('/api/me'); // ✅ رابط نسبي فقط
         setAuthenticated(true);
       } catch (err) {
         setAuthenticated(false);
