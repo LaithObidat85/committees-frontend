@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL:
     window.location.hostname === 'localhost'
       ? 'http://localhost:5000' // ✅ أثناء التطوير
-      : 'https://committees-backend.onrender.com', // ✅ بعد النشر
+      : 'https://site--committees-iu--lz2bkwfq978l.code.run', // ✅ بعد النشر
   withCredentials: true,
 });
 
